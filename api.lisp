@@ -613,7 +613,9 @@ all of the group matches."
                (macc (subseq string ms me))
                (sacc (loop for s across rs
                            for e across re
-                           collecting (subseq string s e))))))))
+                           collecting (if (and s e)
+                                          (subseq string s e)
+                                          ""))))))))
 
 #-:cormanlisp
 (define-compiler-macro all-scans-as-strings (&whole form regex &rest rest)
